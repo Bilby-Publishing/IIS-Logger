@@ -47,7 +47,6 @@ async function Run(filePath) {
 	let url = new URL(summary.url);
 
 	function GenerateField(evt) {
-
 		return {
 			"name": evt.RenderingInfo[0].Opcode[0],
 			"value": evt.EventData[0].Data.slice(1)
