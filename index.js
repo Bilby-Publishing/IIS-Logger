@@ -76,7 +76,7 @@ async function Run(filePath) {
 					"url": "",
 				},
 				"url": summary.url,
-				"description": `${summary.verb} ${url.pathname+url.search}\n` +
+				"description": `${summary.verb} \`${url.pathname+url.search}\`\n` +
 					`Time Taken: \`${end.getTime() - start.getTime()}ms\``,
 				"fields": details
 			}
