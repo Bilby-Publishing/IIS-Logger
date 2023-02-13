@@ -59,7 +59,7 @@ async function Run(filePath) {
 		.map(x => GenerateField(x.EventData[0].Data));
 
 	Send({
-		username: "Osage",
+		username: process.env.device,
 		avatar_url: "https://avatars.githubusercontent.com/u/120225958?s=200&v=4",
 		content: "",
 		embeds: [
