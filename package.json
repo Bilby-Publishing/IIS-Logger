@@ -1,0 +1,22 @@
+{
+	"name": "iis-logger",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Bilby-Publishing/IIS-Logger.git"
+	},
+	"author": "",
+	"bugs": {
+		"url": "https://github.com/Bilby-Publishing/IIS-Logger/issues"
+	},
+	"homepage": "https://github.com/Bilby-Publishing/IIS-Logger#readme",
+	"dependencies": {
+		"dotenv": "^16.0.3",
+		"xml2js": "^0.4.23"
+	}
+}
