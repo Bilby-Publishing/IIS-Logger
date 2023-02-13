@@ -56,7 +56,11 @@ async function Run(filePath) {
 		};
 	}
 
-	let details = xml.failedRequest.Event
+	let events = xml.failedRequest.Event
+	let start = new Date(events[0].System[0].TimeCreated[0]['$'].SystemTime);
+	let end = new Date(events[events.length-1].System[0].TimeCreated[0]['$'].SystemTime);
+
+	let details = events
 		.filter(x => InRange(Number(x.System[0].Level[0]), 1, 3))
 		.map(x => GenerateField(x));
 
@@ -72,7 +76,8 @@ async function Run(filePath) {
 					"url": "",
 				},
 				"url": summary.url,
-				"description": `${summary.verb} ${url.pathname+url.search}`,
+				"description": `${summary.verb} ${url.pathname+url.search}\n` +
+					`Time Taken: \`${end.getTime() - start.getTime()}\`ms`,
 				"fields": details
 			}
 		]
@@ -96,3 +101,5 @@ fs.watch(process.env.log_folder, {}, (evtType,  filename) => {
 	}
 });
 console.log("watching for new logs");
+
+// Run("./sample/fr003743.xml")
