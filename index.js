@@ -49,8 +49,10 @@ async function Run(filePath) {
 	function GenerateField(evt) {
 		return {
 			"name": evt.RenderingInfo[0].Opcode[0],
-			"value": evt.EventData[0].Data.slice(1)
-				.map(x => `${x['$'].Name}: ${x._}`).join('\n')
+			"value": "```" +
+				evt.EventData[0].Data.slice(1)
+					.map(x => `${x['$'].Name}: ${x._}`).join('\n') +
+				"```"
 		};
 	}
 
