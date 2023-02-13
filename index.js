@@ -23,7 +23,7 @@ function InRange(num, min, max) {
 
 function Send(params) {
 	const req = https.request(options, (res) => {
-		console.log(`statusCode: ${res.statusCode}`);
+		console.log(`Sent Webhook\n  statusCode: ${res.statusCode}`);
 	});
 
 	req.on('error', (error) => {
@@ -47,7 +47,6 @@ async function Run(filePath) {
 	let url = new URL(summary.url);
 
 	function GenerateField(evt) {
-		console.log(50, evt);
 		return {
 			"name": evt[0]._,
 			"value": evt.slice(1)
@@ -79,7 +78,6 @@ async function Run(filePath) {
 }
 
 fs.watch(process.env.log_folder, {}, (evtType,  filename) => {
-	console.log(evtType);
 	if (evtType === 'rename' && filename) {
 		const filePath = path.join(process.env.log_folder, filename);
 
