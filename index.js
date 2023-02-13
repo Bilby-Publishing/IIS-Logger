@@ -49,10 +49,10 @@ async function Run(filePath) {
 	function GenerateField(evt) {
 		return {
 			"name": evt.RenderingInfo[0].Opcode[0],
-			"value": "```" +
+			"value": "```\n" +
 				evt.EventData[0].Data.slice(1)
 					.map(x => `${x['$'].Name}: ${x._}`).join('\n') +
-				"```"
+				"\n```"
 		};
 	}
 
@@ -77,7 +77,7 @@ async function Run(filePath) {
 				},
 				"url": summary.url,
 				"description": `${summary.verb} ${url.pathname+url.search}\n` +
-					`Time Taken: \`${end.getTime() - start.getTime()}\`ms`,
+					`Time Taken: \`${end.getTime() - start.getTime()}ms\``,
 				"fields": details
 			}
 		]
@@ -102,4 +102,4 @@ fs.watch(process.env.log_folder, {}, (evtType,  filename) => {
 });
 console.log("watching for new logs");
 
-// Run("./sample/fr003743.xml")
+Run("./sample/fr003743.xml")
