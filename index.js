@@ -47,16 +47,17 @@ async function Run(filePath) {
 	let url = new URL(summary.url);
 
 	function GenerateField(evt) {
+
 		return {
-			"name": evt[0]._,
-			"value": evt.slice(1)
+			"name": evt.RenderingInfo[0].Opcode[0],
+			"value": evt.EventData[0].Data.slice(1)
 				.map(x => `${x['$'].Name}: ${x._}`).join('\n')
 		};
 	}
 
 	let details = xml.failedRequest.Event
 		.filter(x => InRange(Number(x.System[0].Level[0]), 1, 3))
-		.map(x => GenerateField(x.EventData[0].Data));
+		.map(x => GenerateField(x));
 
 	Send({
 		username: process.env.device,
@@ -94,3 +95,5 @@ fs.watch(process.env.log_folder, {}, (evtType,  filename) => {
 	}
 });
 console.log("watching for new logs");
+
+Run('./sample/fr003743.xml');
