@@ -102,4 +102,4 @@ fs.watch(process.env.log_folder, {}, (evtType,  filename) => {
 });
 console.log("watching for new logs");
 
-Run("./sample/fr003743.xml")
+// Run("./sample/fr003743.xml")
