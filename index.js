@@ -44,6 +44,10 @@ async function Run(filePath) {
 		console.error(`${filePath}: is not a failed request`);
 	}
 
+	if (summary.statusCode == "404.5") {
+		return; // ignore blocked requests
+	}
+
 	let url = new URL(summary.url);
 
 	function GenerateField(evt) {
