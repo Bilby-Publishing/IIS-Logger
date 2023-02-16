@@ -6,23 +6,22 @@ const fs = require('fs');
 
 require('dotenv').config();
 
-
-const options = {
-	hostname: 'discord.com',
-	port: 443,
-	path: process.env.web_hook,
-	method: 'POST',
-	headers: {
-		'Content-Type': 'application/json'
-	}
-};
-
 function InRange(num, min, max) {
 	return min <= num && num <= max;
 }
 
-function Send(params) {
-	const req = https.request(options, (res) => {
+function Send(is404, params) {
+	const req = https.request({
+		hostname: 'discord.com',
+		port: 443,
+		path: is404 ?
+			process.env.web_hook_404 :
+			process.env.web_hook,
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	}, (res) => {
 		console.log(`Sent Webhook\n  statusCode: ${res.statusCode}`);
 	});
 
@@ -68,7 +67,7 @@ async function Run(filePath) {
 		.filter(x => InRange(Number(x.System[0].Level[0]), 1, 3))
 		.map(x => GenerateField(x));
 
-	Send({
+	Send(summary.status == "404", {
 		username: process.env.device,
 		avatar_url: "https://avatars.githubusercontent.com/u/120225958?s=200&v=4",
 		content: "",
