@@ -67,7 +67,7 @@ async function Run(filePath) {
 		.filter(x => InRange(Number(x.System[0].Level[0]), 1, 3))
 		.map(x => GenerateField(x));
 
-	Send(summary.status == "404", {
+	Send(summary.statusCode == "404", {
 		username: process.env.device,
 		avatar_url: "https://avatars.githubusercontent.com/u/120225958?s=200&v=4",
 		content: "",
